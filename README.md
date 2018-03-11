@@ -1,6 +1,5 @@
-# retrofit-exercise
-[retrofit](http://square.github.io/retrofit/)を使って[GitHubのAPI](https://developer.github.com/v3/repos/#list-user-repositories)からデータを取得する
-
+# RxJava-exercise
+[retrofit-exercise](https://github.com/buntafujikawa/retrofit-exercise)をcloneしてきて、ここにRxJavaを組み込んだ
 
 ## 構成
 ```
@@ -16,37 +15,7 @@
     └── MainActivity.kt
 ```
 
-## 使い方
-
-パスを可変にする  
-`https://api.github.com/users/buntafujikawa/repos`
-
-```kotlin
-@GET("users/{user}/repos")
-fun fetchReposList(@Path("user") user: String) : Call<List<Repos>>
-```
-
-getパラメータ  
-`https://api.github.com/users/buntafujikawa/repos?sort=desc`
-
-```kotlin
-@GET("users/{user}/repos")
-fun fetchReposList(@Path("user") user: String, @Query("sort") sort: String) : Call<List<Repos>>
-
-```
-
-あとはドキュメントみればわかるので、わかんないことがあればそちらを見るようにする
-
-## メモ
-### Logについて
-
-```java
-Log.v：VERVOSE（すべてのログ情報）
-Log.d：DEBUG(デバッグ情報）
-Log.i：INFO(情報）
-Log.w：WARN(警告）
-Log.e：ERROR（致命的な問題）
-```
-
-## スレッドからUIを操作する
-[スレッドからUIを操作する](http://seesaawiki.jp/w/moonlight_aska/d/%A5%B9%A5%EC%A5%C3%A5%C9%A4%AB%A4%E9UI%A4%F2%C1%E0%BA%EE%A4%B9%A4%EB)を参考にした
+## 参考
+概要に関してはここらへんの記事がわかりやい  
+[リアクティブプログラミングとRxJavaの概要](https://codezine.jp/article/detail/9570)  
+[リアクティブプログラミングへの理解がイマイチだったのでまとめてみた](http://system.blog.uuum.jp/entry/%E3%83%AA%E3%82%A2%E3%82%AF%E3%83%86%E3%82%A3%E3%83%96%E3%83%97%E3%83%AD%E3%82%B0%E3%83%A9%E3%83%9F%E3%83%B3%E3%82%B0%E3%81%B8%E3%81%AE%E7%90%86%E8%A7%A3%E3%81%8C%E3%82%A4%E3%83%9E%E3%82%A4%E3%83%81%E3%81%A0%E3%81%A3)
