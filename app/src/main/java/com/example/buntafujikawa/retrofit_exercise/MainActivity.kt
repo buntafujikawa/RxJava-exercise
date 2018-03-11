@@ -2,39 +2,30 @@ package com.example.buntafujikawa.retrofit_exercise
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import android.os.Handler
 import android.util.Log
 
 import com.example.buntafujikawa.retrofit_exercise.api.APIClient
-
 import kotlinx.android.synthetic.main.activity_main.*
-import kotlin.concurrent.thread
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val handler = Handler()
+        fetchReposList()
+    }
 
-        // Androidではメインスレッドでネットワーク通信を行うことができない
-        thread {
-            try {
-                val response = APIClient.fetchReposList()
-                val firstRepos = response.body()!![0]
-
-                // 別スレッドからUI操作ができないのでhandlerを使用する
-                handler.post(Runnable {
-                    name_text.text = firstRepos.name
-                    description_text.text = firstRepos.description
-                    language_text.text = firstRepos.language
-                    url_text.text = firstRepos.url
-                })
-
-                Log.d("retrofit", "リポジトリのID" + response.body())
-            } catch (e: Exception) {
-                Log.w("retrofit", "fetchReposList :" + e)
-            }
-        }
+    private fun fetchReposList() {
+        // 成功した時の処理
+        APIClient.fetchReposList({
+            name_text.text = it[0].name
+            description_text.text = it[0].description
+            language_text.text = it[0].language
+            url_text.text = it[0].url
+        },
+            // 失敗した時の処理
+            // TODO 何かしらエラー時のメッセージを取得して表示させるようにしたようが良いな
+            Log.w("retrofit", "error fetchReposList")
+        )
     }
 }
