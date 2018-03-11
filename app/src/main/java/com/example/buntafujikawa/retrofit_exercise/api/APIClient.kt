@@ -24,7 +24,7 @@ object APIClient {
 
     fun fetchReposList() :Response<List<Repos>> {
         val service = restClient().create(GitHubService::class.java)
-        return service.fetchReposList(ACCOUNT_NAME).execute()
+        return service.fetchReposList(ACCOUNT_NAME, "desc").execute()
     }
 
     fun fetchUser() : Response<User> {
