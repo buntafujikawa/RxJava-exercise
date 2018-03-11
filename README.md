@@ -10,7 +10,8 @@
     ├── response
     │   └── Response.kt
     ├── services
-    │   └── GithubService.kt
+    │   ├── GithubService.kt
+    │   └── GitHubUserService.KT
     │
     └── MainActivity.kt
 ```
