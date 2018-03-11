@@ -3,5 +3,4 @@ package com.example.buntafujikawa.retrofit_exercise.response
 /*
 各APIからのレスポンスのdataクラスを作成する
  */
-// TODO 後でリポジトリ名なども追加する
-data class Repos(val id: Int)
+data class Repos(val name: String, val description: String, val language: String, val url: String)

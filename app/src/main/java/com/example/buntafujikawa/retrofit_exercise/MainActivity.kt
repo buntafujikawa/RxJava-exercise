@@ -25,7 +25,10 @@ class MainActivity : AppCompatActivity() {
 
                 // 別スレッドからUI操作ができないのでhandlerを使用する
                 handler.post(Runnable {
-                    main_text.text = firstRepos.id.toString()
+                    name_text.text = firstRepos.name
+                    description_text.text = firstRepos.description
+                    language_text.text = firstRepos.language
+                    url_text.text = firstRepos.url
                 })
 
                 Log.d("retrofit", "リポジトリのID" + response.body())
