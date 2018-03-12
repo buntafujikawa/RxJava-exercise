@@ -1,5 +1,6 @@
 package com.example.buntafujikawa.retrofit_exercise.api
 
+import android.content.Context
 import com.example.buntafujikawa.retrofit_exercise.response.Repos
 import com.example.buntafujikawa.retrofit_exercise.response.User
 import com.example.buntafujikawa.retrofit_exercise.services.GitHubRepositoryService
@@ -28,14 +29,14 @@ object APIClient {
             .build()
     }
 
-    fun fetchReposList(onSuccess: (response: List<Repos>) -> Unit, onError: Int) {
+    fun fetchReposList(context:Context,onSuccess: (response: List<Repos>) -> Unit, onError: Int) {
         val service: GitHubRepositoryService = restClient().create(GitHubRepositoryService::class.java)
         service.fetchReposList(ACCOUNT_NAME, "desc")
             .subscribeOn(Schedulers.io()) // API通信を非同期に実行する
             .observeOn(AndroidSchedulers.mainThread()) // Observableが吐き出したデータを受け取って加工する場所を指定するスレッド
             .subscribe({
                 // 成功した時の処理
-                onSuccess
+                onSuccess(it)
             }, {
                 // 失敗した時の処理
                 onError
