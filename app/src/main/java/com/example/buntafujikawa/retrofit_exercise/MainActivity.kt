@@ -20,10 +20,10 @@ class MainActivity : AppCompatActivity() {
     private fun fetchReposList() {
         // 成功した時の処理
         APIClient.fetchReposList(this,{
-            name_text.text = it[0].name
-            description_text.text = it[0].description
-            language_text.text = it[0].language
-            url_text.text = it[0].url
+            text1.text = it[0].name
+            text2.text = it[0].description
+            text3.text = it[0].language
+            text4.text = it[0].url
             Log.d("retrofit", "debug fetchReposList")
         },
             // 失敗した時の処理
@@ -34,8 +34,8 @@ class MainActivity : AppCompatActivity() {
 
     private fun fetchAWSTweetList() {
         TwitterClient.fetchAWSTweetList(this,{
-            name_text.text = it[0].id_str
-            description_text.text = it[0].text
+            text1.text = it[0].id_str
+            text2.text = it[0].text
         },
             // 失敗した時の処理
             Log.w("retrofit", "============================ warn fetchReposList ============================")
