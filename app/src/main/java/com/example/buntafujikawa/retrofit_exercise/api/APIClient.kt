@@ -29,7 +29,7 @@ object APIClient {
             .build()
     }
 
-    fun fetchReposList(context:Context,onSuccess: (response: List<Repos>) -> Unit, onError: Int) {
+    fun fetchReposList(context: Context, onSuccess: (response: List<Repos>) -> Unit, onError: Int) {
         val service: GitHubRepositoryService = restClient().create(GitHubRepositoryService::class.java)
         service.fetchReposList(ACCOUNT_NAME, "desc")
             .subscribeOn(Schedulers.io()) // API通信を非同期に実行する
