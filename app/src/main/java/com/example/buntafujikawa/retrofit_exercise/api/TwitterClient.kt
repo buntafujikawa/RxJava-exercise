@@ -2,7 +2,6 @@ package com.example.buntafujikawa.retrofit_exercise.api
 
 import android.content.Context
 
-import com.example.buntafujikawa.retrofit_exercise.response.Repos
 import com.example.buntafujikawa.retrofit_exercise.response.Tweet
 import com.example.buntafujikawa.retrofit_exercise.services.TwitterService
 
@@ -11,7 +10,6 @@ import io.reactivex.schedulers.Schedulers
 
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
-import okhttp3.internal.http.HttpMethod
 
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
@@ -21,6 +19,8 @@ import java.util.concurrent.TimeUnit
 // twitterのapiから取得をする
 object TwitterClient {
     private const val BASE_URL = "https://api.twitter.com/1.1/"
+    // TODO tokenをどこで管理するかを決める
+    private const val AUTH_TOKEN = "*****"
 
     private fun restClient(): Retrofit {
         return Retrofit.Builder()
@@ -41,7 +41,7 @@ object TwitterClient {
     private val appendRequestHeader : Interceptor by lazy {
         Interceptor { chain ->
             val request = chain.request().newBuilder()
-                // TODO ヘッダーのトークンをどこに切り出せば良いのかを確認
+                .header("Authorization", AUTH_TOKEN)
                 .build()
             chain.proceed(request)
         }

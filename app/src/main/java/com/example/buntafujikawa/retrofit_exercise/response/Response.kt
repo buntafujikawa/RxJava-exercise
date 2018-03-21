@@ -7,4 +7,4 @@ data class Repos(val name: String, val description: String, val language: String
 
 data class User(val name: String, val company: String, val email: String)
 
-data class Tweet(val id_str: String)
+data class Tweet(val id_str: String, val text: String)

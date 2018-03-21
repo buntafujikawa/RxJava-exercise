@@ -35,10 +35,10 @@ class MainActivity : AppCompatActivity() {
     private fun fetchAWSTweetList() {
         TwitterClient.fetchAWSTweetList(this,{
             name_text.text = it[0].id_str
-            Log.d("retrofit", "============================ " + it[0].id_str)
+            description_text.text = it[0].text
         },
             // 失敗した時の処理
-            Log.w("retrofit", "============================ warn fetchReposList")
+            Log.w("retrofit", "============================ warn fetchReposList ============================")
         )
     }
 }
